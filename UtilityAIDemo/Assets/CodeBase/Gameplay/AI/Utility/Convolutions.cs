@@ -11,9 +11,9 @@ namespace CodeBase.Gameplay.AI.Utility
       Func<BattleSkill, IHero, bool> appliesTo,
       Func<BattleSkill, IHero, ISkillSolver, float> getInput,
       Func<float, IHero, float> score,
-      string name)
+      SkillType skillType)
     {
-      Add(new UtilityFunction(appliesTo, getInput, score, name));
+      Add(new UtilityFunction(appliesTo, getInput, score, skillType));
     }
   }
 }

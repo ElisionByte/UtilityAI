@@ -33,7 +33,8 @@ namespace CodeBase.Gameplay.AI.Utility
       _aiReporter = aiReporter;
       _skillSolver = skillSolver;
 
-      _utilityFunctions = new Brains().GetUtilityFunctions();
+
+      _utilityFunctions = new MobsBrain().LoadBrain();
     }
     
     
@@ -76,7 +77,7 @@ namespace CodeBase.Gameplay.AI.Utility
           where utilityFunction.AppliesTo(skill, hero)
           let input = utilityFunction.GetInput(skill, hero, _skillSolver)
           let score = utilityFunction.Score(input, hero)
-          select new ScoreFactor(utilityFunction.Name, score))
+          select new ScoreFactor(utilityFunction.SkillType, score))
         .ToList();
       
       _aiReporter.ReportDecisionDetails(skill, hero, scoreFactors);

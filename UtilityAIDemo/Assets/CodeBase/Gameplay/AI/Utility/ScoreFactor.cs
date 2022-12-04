@@ -1,16 +1,16 @@
 namespace CodeBase.Gameplay.AI.Utility
 {
-  public struct ScoreFactor
-  {
-    public string Name { get; }
-    public float Score { get; }
-
-    public ScoreFactor(string name, float score)
+    public struct ScoreFactor
     {
-      Name = name;
-      Score = score;
-    }
+        public SkillType SkillType { get; }
+        public float Score { get; }
 
-    public override string ToString() =>  $"{Name} -> {(Score >= 0 ? "+" : "")}{Score}";
-  }
+        public ScoreFactor(SkillType skillType, float score)
+        {
+            SkillType = skillType;
+            Score = score;
+        }
+
+        public override string ToString() => $"{SkillType} -> {(Score >= 0 ? "+" : "")}{Score}";
+    }
 }
