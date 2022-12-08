@@ -41,10 +41,4 @@ namespace CodeBase.Gameplay.AI.Calculation
             ? True
             : False;
     }
-
-    public class AIInput
-    {
-        public float TargetHpPercentage(BattleSkill skill, IHero target, ISkillSolver skillSolver) =>
-          target.State.HpPercentage;
-    }
 }
