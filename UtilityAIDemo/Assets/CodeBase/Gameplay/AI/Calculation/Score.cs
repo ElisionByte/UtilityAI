@@ -32,10 +32,5 @@ namespace CodeBase.Gameplay.AI.Calculation
               ? input * scaleBy
               : 0;
         }
-
-        public static float FocusDamage(float hpPercentage, IHero target)
-        {
-            return (1f - hpPercentage) * 50;
-        }
     }
 }

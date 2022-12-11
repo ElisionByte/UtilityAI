@@ -5,15 +5,15 @@ using CodeBase.Gameplay.Skills;
 
 namespace CodeBase.Gameplay.AI.Utility
 {
-  public class Convolutions : List<IUtilityFunction>
-  {
-    public void Add(
-      Func<BattleSkill, IHero, bool> appliesTo,
-      Func<BattleSkill, IHero, ISkillSolver, float> getInput,
-      Func<float, IHero, float> score,
-      SkillType skillType)
+    public class Convolutions : List<IUtilityFunction>
     {
-      Add(new UtilityFunction(appliesTo, getInput, score, skillType));
+        public void Add(
+          Func<BattleSkill, IHero, bool> appliesTo,
+          Func<BattleSkill, IHero, ISkillSolver, float> getInput,
+          Func<float, IHero, float> score,
+          SkillType skillType)
+        {
+            Add(new UtilityFunction(appliesTo, getInput, score, skillType));
+        }
     }
-  }
 }
