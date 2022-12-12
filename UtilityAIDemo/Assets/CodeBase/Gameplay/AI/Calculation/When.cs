@@ -4,6 +4,7 @@ using CodeBase.StaticData.Skills;
 
 namespace CodeBase.Gameplay.AI.Calculation
 {
+    //Condition for some action
     public static class When
     {
         public static bool SkillIsDamage(BattleSkill skill, IHero hero) =>

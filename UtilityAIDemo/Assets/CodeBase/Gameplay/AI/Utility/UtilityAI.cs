@@ -33,10 +33,11 @@ namespace CodeBase.Gameplay.AI.Utility
             _aiReporter = aiReporter;
             _skillSolver = skillSolver;
 
-
+            //Initialization stage
             _utilityFunctions = new MobsBrain().LoadBrain();
         }
 
+        //Entry point (best decision for current game situation)
         public HeroAction MakeBestDecision(IHero readyHero)
         {
             List<ScoredAction> choices = GetScoredHeroActions(readyHero, ReadySkills(readyHero))
@@ -47,12 +48,13 @@ namespace CodeBase.Gameplay.AI.Utility
             return choices.FindMax(x => x.Score);
         }
 
+        //Return collection of actions with score value for some hero entity and his skills
         private IEnumerable<ScoredAction> GetScoredHeroActions(IHero readyHero, IEnumerable<BattleSkill> skills)
         {
             foreach (BattleSkill skill in skills)
                 foreach (HeroSet heroSet in HeroSetForSkill(skill))
                 {
-                    float? score = CalculateScore(skill, heroSet);
+                    float? score = CalculateScoreSum(skill, heroSet);
                     if (!score.HasValue)
                         continue;
 
@@ -60,7 +62,8 @@ namespace CodeBase.Gameplay.AI.Utility
                 }
         }
 
-        private float? CalculateScore(BattleSkill skill, HeroSet heroSet)
+        //Return sum score for skill-all herous
+        private float? CalculateScoreSum(BattleSkill skill, HeroSet heroSet)
         {
             return heroSet.Targets
               .Select(hero => CalculateScore(skill, hero))
@@ -68,6 +71,7 @@ namespace CodeBase.Gameplay.AI.Utility
               .Sum();
         }
 
+        //Return score value for skill-hero
         private float? CalculateScore(BattleSkill skill, IHero hero)
         {
             List<ScoreFactor> scoreFactors =
@@ -84,6 +88,7 @@ namespace CodeBase.Gameplay.AI.Utility
               .SumOrNull();
         }
 
+        //Herous that can be affected by skill
         private IEnumerable<HeroSet> HeroSetForSkill(BattleSkill skill)
         {
             IEnumerable<string> availableTargets =
@@ -100,6 +105,7 @@ namespace CodeBase.Gameplay.AI.Utility
             yield return new HeroSet(availableTargets.Select(_heroRegistry.GetHero));
         }
 
+        //Return skill that is ready now for current hero
         private IEnumerable<BattleSkill> ReadySkills(IHero readyHero)
         {
             return readyHero.State.SkillStates

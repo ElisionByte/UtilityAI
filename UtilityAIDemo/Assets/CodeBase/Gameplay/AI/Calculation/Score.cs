@@ -4,6 +4,7 @@ using CodeBase.Gameplay.Skills;
 
 namespace CodeBase.Gameplay.AI.Calculation
 {
+    //Score result value for action
     public static class Score
     {
         public static float AsIs(float input, IHero target) => input;

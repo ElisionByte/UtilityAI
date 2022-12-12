@@ -5,6 +5,7 @@ using CodeBase.Gameplay.Skills;
 
 namespace CodeBase.Gameplay.AI.Calculation
 {
+    //Status check for action
     public static class GetInput
     {
         private const int True = 1;
@@ -22,7 +23,7 @@ namespace CodeBase.Gameplay.AI.Calculation
         public static float IsKillingBlow(BattleSkill skill, IHero target, ISkillSolver skillSolver)
         {
             float damage = skillSolver.CalculateSkillValue(skill.CasterId, skill.TypeId, target.Id);
-            return damage > target.State.CurrentHp
+            return damage >= target.State.CurrentHp
               ? True
               : False;
         }
