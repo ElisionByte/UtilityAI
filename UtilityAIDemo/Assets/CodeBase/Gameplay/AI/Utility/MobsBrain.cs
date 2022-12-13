@@ -2,6 +2,7 @@
 
 namespace CodeBase.Gameplay.AI.Utility
 {
+    //Consideration
     public sealed class MobsBrain : BaseBrain
     {
         public override Convolutions LoadBrain()

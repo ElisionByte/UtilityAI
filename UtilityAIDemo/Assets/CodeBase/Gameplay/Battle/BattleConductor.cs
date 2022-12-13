@@ -63,6 +63,16 @@ namespace CodeBase.Gameplay.Battle
             CheckBattleEnd();
         }
 
+        //Turn start
+        public void PerformHeroAction(HeroBehaviour readyHero)
+        {
+            HeroAction heroAction = _artificialIntelligence.MakeBestDecision(readyHero);
+
+            _skillSolver.ProcessHeroAction(heroAction);
+
+            HeroActionProduced?.Invoke(heroAction);
+        }
+
         public void Start() => _started = true;
         public void Stop() => _started = false;
         public void ResumeTurnTimer() => _turnTimerPaused = false;
@@ -116,15 +126,6 @@ namespace CodeBase.Gameplay.Battle
                     PerformHeroAction(hero);
                 }
             }
-        }
-
-        public void PerformHeroAction(HeroBehaviour readyHero)
-        {
-            HeroAction heroAction = _artificialIntelligence.MakeBestDecision(readyHero);
-
-            _skillSolver.ProcessHeroAction(heroAction);
-
-            HeroActionProduced?.Invoke(heroAction);
         }
     }
 }

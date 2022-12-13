@@ -38,6 +38,7 @@ namespace CodeBase.Gameplay.AI.Utility
         }
 
         //Entry point (best decision for current game situation)
+        //Reasoner
         public HeroAction MakeBestDecision(IHero readyHero)
         {
             List<ScoredAction> choices = GetScoredHeroActions(readyHero, ReadySkills(readyHero))

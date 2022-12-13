@@ -5,6 +5,7 @@ using CodeBase.Gameplay.Skills;
 
 namespace CodeBase.Gameplay.AI.Utility
 {
+    //Appraisal
     public class Convolutions : List<IUtilityFunction>
     {
         public void Add(
