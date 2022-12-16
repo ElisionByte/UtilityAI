@@ -29,9 +29,10 @@ namespace CodeBase.Gameplay.Battle
             _hp = 1;
             _hpSlider.value = _hp;
 
-            _actions = new MobAction[1]
+            _actions = new MobAction[2]
             {
-                new MobAction(MobSkillType.Damage, 0.2f)
+                new MobAction(MobSkillType.Damage, MobSkillKind.BaseAtack, 0.2f),
+                new MobAction(MobSkillType.Damage, MobSkillKind.Critical, 0.5f)
             };
         }
 
@@ -61,9 +62,13 @@ namespace CodeBase.Gameplay.Battle
                   select utilityFunction.Score(input, opponent)).Sum();
 
                 actionAndScore.Add(action, actionsScoreSum);
+
+                Debug.Log($"{nameof(WizardMob)} : {action.ActionType} : {action.ActionKind} : {actionsScoreSum}");
             }
 
             MobAction bestAction = actionAndScore.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
+
+            Debug.Log($"Best for {nameof(WizardMob)} : {bestAction.ActionType} : {bestAction.ActionKind}");
 
             return bestAction;
         }

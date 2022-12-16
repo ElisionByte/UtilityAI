@@ -29,7 +29,8 @@ namespace CodeBase.Gameplay.AI.Utility
         {
             return new()
             {
-                { MobWhen.SkillIsDamage, MobInput.PercentageDamage, MobScore.IfTrueThen(+50), MobSkillType.Damage},
+                { MobWhen.SkillIsDamage, MobInput.BasicAtack, MobScore.IfTrueThen(+50), MobSkillKind.BaseAtack},
+                { MobWhen.SkillIsDamage, MobInput.CriticalAtack, MobScore.IfCriticalThen(+150), MobSkillKind.Critical},
             };
         }
     }
@@ -40,7 +41,7 @@ namespace CodeBase.Gameplay.AI.Utility
         {
             return new()
             {
-                { MobWhen.SkillIsDamage, MobInput.PercentageDamage, MobScore.IfTrueThen(+50), MobSkillType.Damage}
+                { MobWhen.SkillIsDamage, MobInput.BasicAtack, MobScore.IfTrueThen(+50), MobSkillKind.BaseAtack}
             };
         }
     }

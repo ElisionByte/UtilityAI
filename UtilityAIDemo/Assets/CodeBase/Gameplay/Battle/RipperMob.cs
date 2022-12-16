@@ -31,7 +31,7 @@ namespace CodeBase.Gameplay.Battle
 
             _actions = new MobAction[1]
             {
-                new MobAction(MobSkillType.Damage, 0.3f)
+                new MobAction(MobSkillType.Damage, MobSkillKind.BaseAtack, 0.3f)
             };
         }
 
@@ -61,9 +61,13 @@ namespace CodeBase.Gameplay.Battle
                   select utilityFunction.Score(input, opponent)).Sum();
 
                 actionAndScore.Add(action, actionsScoreSum);
+
+                Debug.Log($"{nameof(RipperMob)} : {action.ActionType} : {action.ActionKind} : {actionsScoreSum}");
             }
 
             MobAction bestAction = actionAndScore.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
+
+            Debug.Log($"Best for {nameof(RipperMob)} : {bestAction.ActionType} : {bestAction.ActionKind}");
 
             return bestAction;
         }

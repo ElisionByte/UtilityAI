@@ -9,6 +9,8 @@ namespace CodeBase.Gameplay.Battle
 
         private void Start()
         {
+            Debug.LogWarning("Game Started!");
+
             _wizard.Initialise();
             _ripper.Initialise();
         }
@@ -32,6 +34,8 @@ namespace CodeBase.Gameplay.Battle
                 {
                     GameObject.Destroy(_ripper.gameObject);
                 }
+
+                Debug.LogError("New turn!");
             }
         }
     }

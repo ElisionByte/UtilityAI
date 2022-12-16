@@ -140,12 +140,14 @@ namespace CodeBase.Gameplay.Battle
     public sealed class MobAction
     {
         public MobSkillType ActionType { get; }
+        public MobSkillKind ActionKind { get; }
         public float Value { get; }
 
-        public MobAction(MobSkillType actionType, float value)
+        public MobAction(MobSkillType actionType, MobSkillKind actionKind, float value)
         {
             ActionType = actionType;
             Value = value;
+            ActionKind = actionKind;
         }
     }
 }

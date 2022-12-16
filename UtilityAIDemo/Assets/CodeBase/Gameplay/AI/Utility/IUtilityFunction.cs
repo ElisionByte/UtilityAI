@@ -18,6 +18,6 @@ namespace CodeBase.Gameplay.AI.Utility
         bool When(MobAction action, IMob mob);
         float Input(MobAction action, IMob mob);
         float Score(float input, IMob mob);
-        MobSkillType SkillType { get; }
+        MobSkillKind SkillKind { get; }
     }
 }

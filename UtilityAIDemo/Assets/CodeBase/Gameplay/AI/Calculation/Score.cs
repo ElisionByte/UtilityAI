@@ -1,7 +1,7 @@
 using System;
 using CodeBase.Gameplay.Battle;
 using CodeBase.Gameplay.Heroes;
-using CodeBase.Gameplay.Skills;
+using Random = UnityEngine.Random;
 
 namespace CodeBase.Gameplay.AI.Calculation
 {
@@ -38,17 +38,21 @@ namespace CodeBase.Gameplay.AI.Calculation
 
     public sealed class MobScore
     {
-        public static float HealScore(float input, IMob target)
-        {
-            if (target.Hp >= 0.5f)
-                return -30;
-
-            return input * 1000;
-        }
-
         public static Func<float, IMob, float> IfTrueThen(float value)
         {
             return (input, _) => input + value;
+        }
+
+        public static Func<float, IMob, float> IfCriticalThen(float value)
+        {
+            int chance = Random.Range(0, 3);
+
+            if (chance == 0)
+            {
+                return (input, _) => input + value;
+            }
+
+            return (input, _) => 0;
         }
     }
 }

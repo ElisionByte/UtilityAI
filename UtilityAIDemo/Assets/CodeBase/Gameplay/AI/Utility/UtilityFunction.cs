@@ -39,15 +39,15 @@ namespace CodeBase.Gameplay.AI.Utility
         private readonly Func<MobAction, IMob, bool> _when = default;
         private readonly Func<MobAction, IMob, float> _input = default;
         private readonly Func<float, IMob, float> _score = default;
-        public MobSkillType SkillType { get; }
+        public MobSkillKind SkillKind { get; }
 
         public MobUtilityFunction(
           Func<MobAction, IMob, bool> when,
           Func<MobAction, IMob, float> input,
           Func<float, IMob, float> score,
-          MobSkillType type)
+          MobSkillKind kind)
         {
-            SkillType = type;
+            SkillKind = kind;
             _when = when;
             _input = input;
             _score = score;

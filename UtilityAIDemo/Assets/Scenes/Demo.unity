@@ -6501,7 +6501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a3f1b8461a93045b3f6786ebebd68c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _opponent: {fileID: 7568011870836741731}
+  _hpSlider: {fileID: 8122081682061369918}
 --- !u!224 &3766876213323655382
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7284,7 +7284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbdfa4ab41f1957489fc2561f9145999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _opponent: {fileID: 3710016752408221048}
+  _hpSlider: {fileID: 8220048536490999499}
 --- !u!114 &7630579597039981930
 MonoBehaviour:
   m_ObjectHideFlags: 0

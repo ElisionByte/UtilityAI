@@ -26,9 +26,9 @@ namespace CodeBase.Gameplay.AI.Utility
           Func<MobAction, IMob, bool> when,
           Func<MobAction, IMob, float> act,
           Func<float, IMob, float> score,
-          MobSkillType skillType)
+          MobSkillKind skillKind)
         {
-            Add(new MobUtilityFunction(when, act, score, skillType));
+            Add(new MobUtilityFunction(when, act, score, skillKind));
         }
     }
 }

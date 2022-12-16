@@ -46,13 +46,12 @@ namespace CodeBase.Gameplay.AI.Calculation
 
     public static class MobInput
     {
-        public static float PercentageDamage(MobAction action, IMob opponent)
+        public static float BasicAtack(MobAction action, IMob opponent)
         {
-            float damage = action.Value;
-            return damage / opponent.MaxHp;
+            return action.Value;
         }
 
-        public static float Heal(MobAction action, IMob target)
+        public static float CriticalAtack(MobAction action, IMob opponent)
         {
             return action.Value;
         }
