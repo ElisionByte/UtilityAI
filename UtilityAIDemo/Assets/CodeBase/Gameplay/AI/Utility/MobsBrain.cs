@@ -1,4 +1,6 @@
 ﻿using CodeBase.Gameplay.AI.Calculation;
+using CodeBase.Gameplay.Battle;
+using CodeBase.StaticData.Skills;
 
 namespace CodeBase.Gameplay.AI.Utility
 {
@@ -17,6 +19,28 @@ namespace CodeBase.Gameplay.AI.Utility
 
                 {When.SkillIsInitiativeBurn, GetInput.InitiativeBurn, Score.CullByTargetInitiative(scaleBy: 50f, cullThreshold: 0.25f), SkillType.InitiativeBurn},
                 {When.SkillIsInitiativeBurn, GetInput.TargetUltimateIsReady, Score.IfTrueThen(+30), SkillType.InitiativeBurnUltimateIsReady},
+            };
+        }
+    }
+
+    public sealed class WizardBrain : BaseMobBrain
+    {
+        public override MobConvolutions LoadBrain()
+        {
+            return new()
+            {
+                { MobWhen.SkillIsDamage, MobInput.PercentageDamage, MobScore.IfTrueThen(+50), MobSkillType.Damage},
+            };
+        }
+    }
+
+    public sealed class RipperBrain : BaseMobBrain
+    {
+        public override MobConvolutions LoadBrain()
+        {
+            return new()
+            {
+                { MobWhen.SkillIsDamage, MobInput.PercentageDamage, MobScore.IfTrueThen(+50), MobSkillType.Damage}
             };
         }
     }

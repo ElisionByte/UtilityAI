@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using CodeBase.Gameplay.AI;
 using CodeBase.Gameplay.Cooldowns;
 using CodeBase.Gameplay.Death;
@@ -126,6 +124,28 @@ namespace CodeBase.Gameplay.Battle
                     PerformHeroAction(hero);
                 }
             }
+        }
+    }
+
+    public interface IMob
+    {
+        float MaxHp { get; }
+        float Hp { get; set; }
+
+        void Initialise();
+        void InvokeAction(MobAction action);
+        MobAction ProceedBestDecision(IMob opponent);
+    }
+
+    public sealed class MobAction
+    {
+        public MobSkillType ActionType { get; }
+        public float Value { get; }
+
+        public MobAction(MobSkillType actionType, float value)
+        {
+            ActionType = actionType;
+            Value = value;
         }
     }
 }

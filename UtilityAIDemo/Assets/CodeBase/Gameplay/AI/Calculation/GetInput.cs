@@ -1,5 +1,6 @@
 using System.Linq;
 using CodeBase.Gameplay.AI.Utility;
+using CodeBase.Gameplay.Battle;
 using CodeBase.Gameplay.Heroes;
 using CodeBase.Gameplay.Skills;
 
@@ -41,5 +42,19 @@ namespace CodeBase.Gameplay.AI.Calculation
           target.State.SkillStates.Last().IsReady
             ? True
             : False;
+    }
+
+    public static class MobInput
+    {
+        public static float PercentageDamage(MobAction action, IMob opponent)
+        {
+            float damage = action.Value;
+            return damage / opponent.MaxHp;
+        }
+
+        public static float Heal(MobAction action, IMob target)
+        {
+            return action.Value;
+        }
     }
 }
