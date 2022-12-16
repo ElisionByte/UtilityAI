@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CodeBase.Gameplay.AI.Utility;
+using UnityEngine;
 
 namespace CodeBase.Gameplay.Battle
 {

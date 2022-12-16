@@ -126,28 +126,4 @@ namespace CodeBase.Gameplay.Battle
             }
         }
     }
-
-    public interface IMob
-    {
-        float MaxHp { get; }
-        float Hp { get; set; }
-
-        void Initialise();
-        void InvokeAction(MobAction action);
-        MobAction ProceedBestDecision(IMob opponent);
-    }
-
-    public sealed class MobAction
-    {
-        public MobSkillType ActionType { get; }
-        public MobSkillKind ActionKind { get; }
-        public float Value { get; }
-
-        public MobAction(MobSkillType actionType, MobSkillKind actionKind, float value)
-        {
-            ActionType = actionType;
-            Value = value;
-            ActionKind = actionKind;
-        }
-    }
 }

@@ -29,9 +29,10 @@ namespace CodeBase.Gameplay.Battle
             _hp = 1;
             _hpSlider.value = _hp;
 
-            _actions = new MobAction[1]
+            _actions = new MobAction[2]
             {
-                new MobAction(MobSkillType.Damage, MobSkillKind.BaseAtack, 0.3f)
+                new MobAction(MobSkillType.Damage, MobSkillKind.BaseAtack, 0.3f),
+                new MobAction(MobSkillType.CriticalDamage, MobSkillKind.HeadShoot, 1f)
             };
         }
 
@@ -40,6 +41,12 @@ namespace CodeBase.Gameplay.Battle
             switch (action.ActionType)
             {
                 case MobSkillType.Damage:
+                    {
+                        _hp -= action.Value;
+                        _hpSlider.value = _hp;
+                    }
+                    break;
+                case MobSkillType.CriticalDamage:
                     {
                         _hp -= action.Value;
                         _hpSlider.value = _hp;

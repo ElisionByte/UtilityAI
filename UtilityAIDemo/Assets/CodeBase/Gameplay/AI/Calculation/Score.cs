@@ -1,6 +1,7 @@
 using System;
 using CodeBase.Gameplay.Battle;
 using CodeBase.Gameplay.Heroes;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace CodeBase.Gameplay.AI.Calculation
@@ -33,26 +34,6 @@ namespace CodeBase.Gameplay.AI.Calculation
             return (input, target) => target.State.InitiativePercentage > cullThreshold
               ? input * scaleBy
               : 0;
-        }
-    }
-
-    public sealed class MobScore
-    {
-        public static Func<float, IMob, float> IfTrueThen(float value)
-        {
-            return (input, _) => input + value;
-        }
-
-        public static Func<float, IMob, float> IfCriticalThen(float value)
-        {
-            int chance = Random.Range(0, 3);
-
-            if (chance == 0)
-            {
-                return (input, _) => input + value;
-            }
-
-            return (input, _) => 0;
         }
     }
 }

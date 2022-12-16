@@ -12,12 +12,4 @@ namespace CodeBase.Gameplay.AI.Utility
         float Score(float input, IHero hero);
         SkillType SkillType { get; }
     }
-
-    public interface IMobUtilityFunction
-    {
-        bool When(MobAction action, IMob mob);
-        float Input(MobAction action, IMob mob);
-        float Score(float input, IMob mob);
-        MobSkillKind SkillKind { get; }
-    }
 }

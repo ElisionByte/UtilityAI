@@ -22,27 +22,4 @@ namespace CodeBase.Gameplay.AI.Utility
             };
         }
     }
-
-    public sealed class WizardBrain : BaseMobBrain
-    {
-        public override MobConvolutions LoadBrain()
-        {
-            return new()
-            {
-                { MobWhen.SkillIsDamage, MobInput.BasicAtack, MobScore.IfTrueThen(+50), MobSkillKind.BaseAtack},
-                { MobWhen.SkillIsDamage, MobInput.CriticalAtack, MobScore.IfCriticalThen(+150), MobSkillKind.Critical},
-            };
-        }
-    }
-
-    public sealed class RipperBrain : BaseMobBrain
-    {
-        public override MobConvolutions LoadBrain()
-        {
-            return new()
-            {
-                { MobWhen.SkillIsDamage, MobInput.BasicAtack, MobScore.IfTrueThen(+50), MobSkillKind.BaseAtack}
-            };
-        }
-    }
 }
