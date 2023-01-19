@@ -11,7 +11,7 @@ namespace CodeBase.Gameplay.Battle
     {
         [SerializeField] private Slider _hpSlider = default;
 
-        private ICollection<IMobUtilityFunction> _utilityFunctions = default;
+        //private ICollection<IMobUtilityFunction> _utilityFunctions = default;
         private MobAction[] _actions = default;
 
         public float MaxHp { get => 1; }
@@ -25,58 +25,60 @@ namespace CodeBase.Gameplay.Battle
 
         public void Initialise()
         {
-            _utilityFunctions = new WizardBrain().LoadBrain();
             _hp = 1;
             _hpSlider.value = _hp;
 
-            _actions = new MobAction[2]
-            {
-                new MobAction(MobSkillType.Damage, MobSkillKind.BaseAtack, 0.2f),
-                new MobAction(MobSkillType.CriticalDamage, MobSkillKind.Critical, 0.5f)
-            };
+            //_utilityFunctions = new WizardBrain().LoadBrain();
+            //_actions = new MobAction[2]
+            //{
+            //    new MobAction(MobSkillType.Damage, MobSkillKind.BaseAtack, 0.2f),
+            //    //new MobAction(MobSkillType.CriticalDamage, MobSkillKind.Critical, 0.5f)
+            //};
+        }
+        public MobAction ProceedBestDecision(IMob opponent)
+        {
+            //Dictionary<MobAction, float> actionAndScore = new Dictionary<MobAction, float>();
+
+            //foreach (MobAction action in _actions)
+            //{
+            //    float actionsScoreSum =
+            //     (from utilityFunction in _utilityFunctions
+            //      where utilityFunction.When(action, opponent)
+            //      let input = utilityFunction.Input(action, opponent)
+            //      select utilityFunction.Score(input, opponent)).Sum();
+
+            //    actionAndScore.Add(action, actionsScoreSum);
+
+            //    Debug.Log($"{nameof(WizardMob)} : {action.ActionType} : {action.ActionKind} : {actionsScoreSum}");
+            //}
+
+            //MobAction bestAction = actionAndScore.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
+
+            //Debug.Log($"Best for {nameof(WizardMob)} : {bestAction.ActionType} : {bestAction.ActionKind}");
+
+            //return bestAction;
+
+            return default; 
         }
 
         public void InvokeAction(MobAction action)
         {
-            switch (action.ActionType)
-            {
-                case MobSkillType.Damage:
-                    {
-                        _hp -= action.Value;
-                        _hpSlider.value = _hp;
-                    }
-                    break;
-                case MobSkillType.CriticalDamage:
-                    {
-                        _hp -= action.Value;
-                        _hpSlider.value = _hp;
-                    }
-                    break;
-            }
+            //switch (action.ActionType)
+            //{
+            //    case MobSkillType.Damage:
+            //        {
+            //            _hp -= action.Value;
+            //            _hpSlider.value = _hp;
+            //        }
+            //        break;
+            //    case MobSkillType.CriticalDamage:
+            //        {
+            //            _hp -= action.Value;
+            //            _hpSlider.value = _hp;
+            //        }
+            //        break;
+            //}
         }
 
-        public MobAction ProceedBestDecision(IMob opponent)
-        {
-            Dictionary<MobAction, float> actionAndScore = new Dictionary<MobAction, float>();
-
-            foreach (MobAction action in _actions)
-            {
-                float actionsScoreSum =
-                 (from utilityFunction in _utilityFunctions
-                  where utilityFunction.When(action, opponent)
-                  let input = utilityFunction.Input(action, opponent)
-                  select utilityFunction.Score(input, opponent)).Sum();
-
-                actionAndScore.Add(action, actionsScoreSum);
-
-                Debug.Log($"{nameof(WizardMob)} : {action.ActionType} : {action.ActionKind} : {actionsScoreSum}");
-            }
-
-            MobAction bestAction = actionAndScore.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
-
-            Debug.Log($"Best for {nameof(WizardMob)} : {bestAction.ActionType} : {bestAction.ActionKind}");
-
-            return bestAction;
-        }
     }
 }

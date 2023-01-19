@@ -40,4 +40,43 @@ namespace CodeBase.Gameplay.Battle
             }
         }
     }
+
+    public sealed class MobAction
+    {
+        public MobSkillType ActionType { get; }
+        public MobSkillKind ActionKind { get; }
+        public float Value { get; }
+
+        public MobAction(MobSkillType actionType, MobSkillKind actionKind, float value)
+        {
+            ActionType = actionType;
+            Value = value;
+            ActionKind = actionKind;
+        }
+    }
+
+    public interface IMob
+    {
+        float MaxHp { get; }
+        float Hp { get; set; }
+
+        void Initialise();
+        MobAction ProceedBestDecision(IMob opponent);
+        void InvokeAction(MobAction action);
+    }
+
+    public enum MobSkillKind
+    {
+        None = 0,
+        BaseAtack = 1,
+        Critical = 2,
+        HeadShoot = 3
+    }
+
+    public enum MobSkillType
+    {
+        None = 0,
+        Damage = 1,
+        CriticalDamage = 2
+    }
 }
