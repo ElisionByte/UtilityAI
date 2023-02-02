@@ -1,4 +1,6 @@
 ﻿using CodeBase.Gameplay.AI.Utility;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.Battle
@@ -8,23 +10,28 @@ namespace CodeBase.Gameplay.Battle
         [SerializeField] private WizardMob _wizard = default;
         [SerializeField] private RipperMob _ripper = default;
 
+        //private MobsUtilityBasedAgent _agent = default;
+
         private void Start()
         {
-            Debug.LogWarning("Game Started!");
+            //_agent = new MobsUtilityBasedAgent();
+            //_agent.Initialise(new UtilityMobsBrain());
 
             _wizard.Initialise();
             _ripper.Initialise();
+
+            Debug.Log("Game Started!");
         }
 
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                MobAction wizardAction = _wizard?.ProceedBestDecision(_ripper);
-                MobAction ripperAction = _ripper?.ProceedBestDecision(_wizard);
+                //MobAction wizardBestAction = _agent.ProceedBestDecision(_wizard, _ripper);
+                //MobAction ripperBestAction = _agent.ProceedBestDecision(_ripper, _wizard);
 
-                _wizard?.InvokeAction(ripperAction);
-                _ripper?.InvokeAction(wizardAction);
+                //_wizard?.ReceiveAction(ripperBestAction);
+                //_ripper?.ReceiveAction(wizardBestAction);
 
                 if (_wizard.Hp <= 0)
                 {
@@ -36,11 +43,12 @@ namespace CodeBase.Gameplay.Battle
                     GameObject.Destroy(_ripper.gameObject);
                 }
 
-                Debug.LogError("New turn!");
+                Debug.Log("New turn!");
             }
         }
     }
 
+    //Action (mob skill & result action from agent)
     public sealed class MobAction
     {
         public MobSkillType ActionType { get; }
@@ -55,16 +63,20 @@ namespace CodeBase.Gameplay.Battle
         }
     }
 
+    //Mob contract & Precept for agent
     public interface IMob
     {
         float MaxHp { get; }
         float Hp { get; set; }
 
+        IEnumerable<MobAction> Actions { get; }
+        MobType Type { get; }
+
         void Initialise();
-        MobAction ProceedBestDecision(IMob opponent);
-        void InvokeAction(MobAction action);
+        void ReceiveAction(MobAction action);
     }
 
+    //Like a general Atack, Critical , Heal etc.
     public enum MobSkillKind
     {
         None = 0,
@@ -73,10 +85,18 @@ namespace CodeBase.Gameplay.Battle
         HeadShoot = 3
     }
 
+    //More concrete if atack single target or multi or even burn
     public enum MobSkillType
     {
         None = 0,
         Damage = 1,
         CriticalDamage = 2
+    }
+
+    public enum MobType
+    {
+        None = 0,
+        Wizard = 1,
+        Ripper = 2
     }
 }
