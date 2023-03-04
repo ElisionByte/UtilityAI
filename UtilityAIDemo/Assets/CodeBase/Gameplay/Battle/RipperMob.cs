@@ -26,12 +26,12 @@ namespace CodeBase.Gameplay.Battle
             _hp = 1;
             _hpSlider.value = _hp;
 
-            //_actions = new MobAction[1]
-            //{
-            //    new MobAction(MobSkillType.Damage, MobSkillKind.BaseAtack, 0.2f),
-            //    //new MobAction(MobSkillType.CriticalDamage, MobSkillKind.Critical, 0.5f),
-            //    //new MobAction(MobSkillType.CriticalDamage, MobSkillKind.HeadShoot, 1f)
-            //};
+            _actions = new MobAction[3]
+            {
+                new MobAction(MobSkillType.Damage, MobSkillKind.BaseAtack, 0.2f),
+                new MobAction(MobSkillType.CriticalDamage, MobSkillKind.Critical, 0.5f),
+                new MobAction(MobSkillType.CriticalDamage, MobSkillKind.HeadShoot, 1f)
+            };
         }
 
         public void ReceiveAction(MobAction action)
